@@ -1,9 +1,11 @@
 import { scribdDownloader } from "./service/ScribdDownloader.js"
 import { slideshareDownloader } from "./service/SlideshareDownloader.js"
 import { everandDownloader } from "./service/EverandDownloader.js"
+import { studocuDownloader } from "./service/StudocuDownloader.js"
 import * as scribdRegex from "./const/ScribdRegex.js"
 import * as slideshareRegex from "./const/SlideshareRegex.js"
 import * as everandRegex from "./const/EverandRegex.js"
+import * as studocuRegex from "./const/StudocuRegex.js"
 
 class App {
     constructor() {
@@ -20,6 +22,8 @@ class App {
             await slideshareDownloader.execute(url)
         } else if (url.match(everandRegex.DOMAIN)) {
             await everandDownloader.execute(url)
+        } else if (url.match(studocuRegex.DOMAIN)) {
+            await studocuDownloader.execute(url, flag)
         } else {
             throw new Error(`Unsupported URL: ${url}`)
         }

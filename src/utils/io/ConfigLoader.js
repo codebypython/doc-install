@@ -26,6 +26,23 @@ class ConfigLoader {
             throw new TypeError(`Unknown key: ${key}`)
         }
     }
+
+    /**
+     * Get optional value in config.ini.
+     * @param {string} section
+     * @param {string} key
+     * @param {string} defaultValue
+     * @returns {string}
+     */
+    loadOptional(section, key, defaultValue = "") {
+        if (!config[section]) {
+            return defaultValue
+        }
+        if (!Object.keys(config[section]).includes(key)) {
+            return defaultValue
+        }
+        return config[section][key]
+    }
 }
 
 export const configLoader = new ConfigLoader()
